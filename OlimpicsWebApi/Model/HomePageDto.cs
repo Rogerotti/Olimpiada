@@ -1,11 +1,12 @@
-﻿using System;
+﻿using OlimpicsWebApi.Model.Core;
+using System;
 
 namespace OlimpicsWebApi.Model
 {
     /// <summary>
     /// Dto okna startowego aplikacji.
     /// </summary>
-    public class HomePageDto
+    public class HomePageDto : BaseDto
     {
         public String Username { get; set; }
 
