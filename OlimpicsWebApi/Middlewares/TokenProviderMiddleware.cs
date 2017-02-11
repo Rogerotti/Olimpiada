@@ -13,26 +13,31 @@ namespace OlimpicsWebApi.Middlewares
 {
     public class TokenProviderMiddleware
     {
-        private readonly RequestDelegate _next;
-        private readonly TokenProviderOptions _options;
+        private readonly RequestDelegate next;
+        private readonly TokenProviderOptions options;
 
         public TokenProviderMiddleware(
             RequestDelegate next,
             IOptions<TokenProviderOptions> options)
         {
-            _next = next;
-            _options = options.Value;
+            this.next = next;
+            this.options = options.Value;
         }
 
         public Task Invoke(HttpContext context)
         {
-            // If the request path doesn't match, skip
-            if (!context.Request.Path.Equals(_options.Path, StringComparison.Ordinal))
+            if (context.Request.Path.Equals("/api/tesst", StringComparison.Ordinal))
             {
-                return _next(context);
-            }
+                var token = context.Request.Headers["token"];
+                var test2 = new JwtSecurityTokenHandler().ReadToken(token);
 
-            // Request must be POST with Content-Type: application/x-www-form-urlencoded
+            }
+           
+            // Sprawdza czy żądana ścieżka pasuje do ścieżki midlleware w tym przypadku  [ścieżka z opcji] + token np. api/token
+            if (!context.Request.Path.Equals(options.Path, StringComparison.Ordinal))
+                return next(context);
+
+            // Zapytanie musi być typu post z Content-Type: application/x-www-form-urlencoded
             if (!context.Request.Method.Equals("POST")
                || !context.Request.HasFormContentType)
             {
@@ -72,31 +77,33 @@ namespace OlimpicsWebApi.Middlewares
 
             // Create the JWT and write it to a string
             var jwt = new JwtSecurityToken(
-                issuer: _options.Issuer,
-                audience: _options.Audience,
+                issuer: options.Issuer,
+                audience: options.Audience,
                 claims: claims,
                 notBefore: now,
-                expires: now.Add(_options.Expiration),
-                signingCredentials: _options.SigningCredentials);
+                expires: now.Add(options.Expiration),
+                signingCredentials: options.SigningCredentials);
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
 
             var response = new
             {
                 access_token = encodedJwt,
-                expires_in = (int)_options.Expiration.TotalSeconds
+                expires_in = (int)options.Expiration.TotalSeconds
             };
 
             // Serialize and return the response
             context.Response.ContentType = "application/json";
-            await context.Response.WriteAsync(JsonConvert.SerializeObject(response, new JsonSerializerSettings { Formatting = Formatting.Indented }));
+            await context.Response.WriteAsync(JsonConvert.SerializeObject(response, 
+                new JsonSerializerSettings { Formatting = Formatting.Indented }));
         }
 
         private Task<ClaimsIdentity> GetIdentity(string username, string password)
         {
             // DON'T do this in production, obviously!
-            if (username == "TEST" && password == "TEST123")
+            if (username == "roger" && password == "123")
             {
-                return Task.FromResult(new ClaimsIdentity(new System.Security.Principal.GenericIdentity(username, "Token"), new Claim[] { }));
+                return Task.FromResult(new ClaimsIdentity(new System.Security.Principal.GenericIdentity(username, "Token"), 
+                    new Claim[] { }));
             }
 
             // Credentials are invalid, or account doesn't exist

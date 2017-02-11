@@ -12,6 +12,7 @@ using System.Text;
 using OlimpicsWebApi.Middlewares;
 using Microsoft.Extensions.Options;
 using OlimpicsWebApi.Model.Core.Authentication;
+using OlimpicsWebApi.Middlewares.Extensions;
 
 namespace OlimpicsWebApi
 {
@@ -73,12 +74,7 @@ namespace OlimpicsWebApi
                 TokenValidationParameters = tokenValidationParameters
             });
 
-            var options = new TokenProviderOptions
-            {
-                SigningCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256),
-            };
-
-            app.UseMiddleware<TokenProviderMiddleware>(Options.Create(options));
+            app.UseTokenProvider();
 
             app.UseMvc();
         }
