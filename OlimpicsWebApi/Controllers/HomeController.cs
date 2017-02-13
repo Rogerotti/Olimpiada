@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using OlimpicsWebApi.Model;
 using System;
 
@@ -9,6 +10,7 @@ namespace OlimpicsWebApi.Controllers
     {
         // GET api/home
         [HttpGet]
+        [Authorize]
         public HomePageDto Get()
         {
             return new HomePageDto();

@@ -5,7 +5,7 @@ namespace OlimpicsWebApi.Model.Core.Authentication
 {
     public class TokenProviderOptions
     {
-        public String Path { get; set; } = "api/token";
+        public String Path { get; set; } = "/api/token";
 
         public String Issuer { get; set; }
 

@@ -35,6 +35,9 @@ namespace OlimpicsWebApi
         {
             // Add framework services.
             services.AddMvc();
+            //            .AddAuthorization() // Note - this is on the IMvcBuilder, not the service collection
+            //.AddJsonFormatters(options => options.ContractResolver = new CamelCasePropertyNamesContractResolver());
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -77,6 +80,7 @@ namespace OlimpicsWebApi
             app.UseTokenProvider();
 
             app.UseMvc();
+
         }
     }
 }
