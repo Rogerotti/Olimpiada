@@ -26,14 +26,7 @@ namespace OlimpicsWebApi.Middlewares
 
         public Task Invoke(HttpContext context)
         {
-            if (context.Request.Path.Equals("/api/tesst", StringComparison.Ordinal))
-            {
-                var token = context.Request.Headers["token"];
-                var test2 = new JwtSecurityTokenHandler().ReadToken(token);
-
-            }
-           
-            // Sprawdza czy żądana ścieżka pasuje do ścieżki midlleware w tym przypadku  [ścieżka z opcji] + token np. api/token
+            // Sprawdza czy żądana ścieżka pasuje do ścieżki midlleware w tym przypadku api/token
             if (!context.Request.Path.Equals(options.Path, StringComparison.Ordinal))
                 return next(context);
 
