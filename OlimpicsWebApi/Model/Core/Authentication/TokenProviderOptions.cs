@@ -3,6 +3,9 @@ using System;
 
 namespace OlimpicsWebApi.Model.Core.Authentication
 {
+    /// <summary>
+    /// Opcje dla generatora tokenów.
+    /// </summary>
     public class TokenProviderOptions
     {
         public String Path { get; set; } = "/api/token";

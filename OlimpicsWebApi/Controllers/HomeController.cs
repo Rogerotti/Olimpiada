@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using OlimpicsWebApi.Controllers.Core;
 using OlimpicsWebApi.Model;
 using OlimpicsWebApi.Model.Core.Authentication;
 using System;
@@ -7,14 +8,12 @@ using System;
 namespace OlimpicsWebApi.Controllers
 {
     [Route("api/[controller]")]
-    public class HomeController : Controller
+    public class HomeController : AuthorizationController
     {
         // GET api/home
         [HttpGet]
-        [TokenAuthorization]
         public HomePageDto Get()
         {
-          //  HttpContext.Request.He
             return new HomePageDto();
         }
 
