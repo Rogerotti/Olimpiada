@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using OlimpicsWebApi.Model.Core.Authentication;
-using System;
+using OlimpicsWebApi.Models.Core.Authorization;
 using System.Text;
 
 namespace OlimpicsWebApi.Middlewares.Extensions

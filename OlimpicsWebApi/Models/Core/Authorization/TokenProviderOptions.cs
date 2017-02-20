@@ -1,7 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using System;
 
-namespace OlimpicsWebApi.Model.Core.Authentication
+namespace OlimpicsWebApi.Models.Core.Authorization
 {
     /// <summary>
     /// Opcje dla generatora tokenów.

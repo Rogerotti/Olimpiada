@@ -1,20 +1,18 @@
-﻿using OlimpicsWebApi.Model.Core;
-using System;
+﻿using System;
 
-namespace OlimpicsWebApi.Model
+namespace OlimpicsWebApi.Repositories.Core.Entity
 {
-    /// <summary>
-    /// Dto okna startowego aplikacji.
-    /// </summary>
-    public class HomePageDto : BaseDto
+    public class User : IEntityBase
     {
+        public Guid Id { get; set; }
+
+        public String Name { get; set; }
+
         public String Username { get; set; }
 
         public Int32 Level { get; set; }
 
         public Int32 CurrentExperiance { get; set; }
-
-        public Int32 ExperianceToNextLevel { get; set; }
 
         public Int32 Coins { get; set; }
 

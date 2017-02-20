@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace OlimpicsWebApi.Model.Core
+namespace OlimpicsWebApi.Models.Core
 {
     /// <summary>
     /// Bazowa klasa dla dto.
     /// </summary>
-    public class BaseDto
+    public class BaseDto : IBaseDto
     {
         /// <summary>
         /// Id elementu.

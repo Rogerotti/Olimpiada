@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using OlimpicsWebApi.Controllers.Core;
-using OlimpicsWebApi.Model;
-using OlimpicsWebApi.Model.Core.Authentication;
+using OlimpicsWebApi.Models;
 using System;
 
 namespace OlimpicsWebApi.Controllers

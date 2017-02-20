@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 
-namespace OlimpicsWebApi.Model.Core.Authentication
+namespace OlimpicsWebApi.Models.Core.Authorization
 {
     public class TokenAuthorizationAttribute : Attribute, IAuthorizationFilter
     {

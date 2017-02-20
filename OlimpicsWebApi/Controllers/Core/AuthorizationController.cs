@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OlimpicsWebApi.Model.Core.Authentication;
+using OlimpicsWebApi.Models.Core.Authorization;
 
 namespace OlimpicsWebApi.Controllers.Core
 {
