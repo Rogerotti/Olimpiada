@@ -2,7 +2,7 @@
 
 namespace OlimpicsWebApi.Repositories.Core.Entity
 {
-    public class User : BaseEntity
+    public class User : EntityBase
     {
         public String Username { get; set; }
 

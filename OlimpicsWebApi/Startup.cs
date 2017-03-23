@@ -7,10 +7,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using OlimpicsWebApi.Middlewares.Extensions;
-using OlimpicsWebApi.Repositories.Services;
-using OlimpicsWebApi.Repositories.Core.Context;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Serialization;
+using OlimpicsWebApi.Repositories.Services;
 
 namespace OlimpicsWebApi
 {
@@ -39,7 +38,7 @@ namespace OlimpicsWebApi
                   });
 
             //TODO
-            services.AddDbContext<BaseContext>(options =>
+            services.AddDbContext<Repositories.Core.Context.BaseContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("BasicString")));
 
             services.AddScoped<IUserRepository, UserRepository>();
