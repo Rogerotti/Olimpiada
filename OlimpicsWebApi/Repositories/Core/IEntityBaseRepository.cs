@@ -1,11 +1,12 @@
 ﻿using OlimpicsWebApi.Models.Core;
+using OlimpicsWebApi.Repositories.Core.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
 namespace OlimpicsWebApi.Repositories.Core
 {
-    public interface IEntityBaseRepository<T> where T : class, IBaseDto, new()
+    public interface IEntityBaseRepository<T> where T : class, IEntityBase, new()
     {
         IEnumerable<T> AllIncluding(params Expression<Func<T, Object>>[] includeProperties);
 

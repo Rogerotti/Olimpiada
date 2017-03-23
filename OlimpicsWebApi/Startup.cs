@@ -7,6 +7,10 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using OlimpicsWebApi.Middlewares.Extensions;
+using OlimpicsWebApi.Repositories.Services;
+using OlimpicsWebApi.Repositories.Core.Context;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Serialization;
 
 namespace OlimpicsWebApi
 {
@@ -27,7 +31,18 @@ namespace OlimpicsWebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc()
+                 .AddJsonOptions(opts =>
+                  {
+                      // Force Camel Case to JSON
+                      opts.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                  });
+
+            //TODO
+            services.AddDbContext<BaseContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("BasicString")));
+
+            services.AddScoped<IUserRepository, UserRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)

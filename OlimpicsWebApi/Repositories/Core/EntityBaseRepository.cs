@@ -1,15 +1,17 @@
-﻿using OlimpicsWebApi.Models.Core;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using OlimpicsWebApi.Models.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
+using OlimpicsWebApi.Repositories.Core.Context;
+using OlimpicsWebApi.Repositories.Core.Entity;
 
 namespace OlimpicsWebApi.Repositories.Core
 {
     public class EntityBaseRepository<T> : IEntityBaseRepository<T>
-           where T : class, IBaseDto, new()
+           where T : class, IEntityBase, new()
     {
         private BaseContext context;
 
